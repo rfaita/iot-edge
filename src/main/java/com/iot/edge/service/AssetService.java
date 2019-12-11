@@ -3,7 +3,7 @@ package com.iot.edge.service;
 import com.iot.edge.component.LocalTokenCache;
 import com.iot.edge.model.Asset;
 import com.iot.edge.repository.AssetRepository;
-import dto.SensorData;
+import com.iot.edge.dto.SensorData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

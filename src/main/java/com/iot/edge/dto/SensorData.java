@@ -1,4 +1,4 @@
-package dto;
+package com.iot.edge.dto;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

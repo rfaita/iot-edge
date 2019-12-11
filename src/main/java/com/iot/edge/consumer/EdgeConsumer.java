@@ -1,7 +1,7 @@
 package com.iot.edge.consumer;
 
 import com.iot.edge.service.AssetService;
-import dto.SensorData;
+import com.iot.edge.dto.SensorData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.annotation.StreamListener;
