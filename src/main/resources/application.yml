@@ -21,11 +21,6 @@ spring:
           input:
             consumer:
               queueNameGroupOnly: true
-      rabbitmqtt:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
               bindingRoutingKey: ".sensor"
       binders:
         rabbitmqtt:
@@ -71,11 +66,6 @@ spring:
           destination: iot.edge.topic
           binder: rabbit
       rabbit:
-        bindings:
-          input:
-            consumer:
-              queueNameGroupOnly: true
-      rabbitmqtt:
         bindings:
           input:
             consumer:
