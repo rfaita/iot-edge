@@ -25,39 +25,35 @@ public class AssetService {
 
     public boolean validateSensorData(SensorData sensorData) {
 
-        if (!cache.validateSensorData(
-                sensorData.getId(),
-                sensorData.getTenantId(),
-                sensorData.getToken())) {
+        String id = sensorData.getId();
+        String tenantId = sensorData.getTenantId();
+        String token = sensorData.getToken();
 
-            LOGGER.info("Entry not found on cache: {},{},{}",
-                    sensorData.getId(),
-                    sensorData.getTenantId(),
-                    sensorData.getToken());
+        if (!isPresentInCache(id, tenantId, token)) {
+
+            LOGGER.info("Entry not found on cache: {},{},{}", id, tenantId, token);
 
             Optional<Asset> result =
-                    repository.findByIdAndTenantIdAndToken(
-                            sensorData.getId(),
-                            sensorData.getTenantId(),
-                            sensorData.getToken()
-                    );
+                    repository.findByIdAndTenantIdAndToken(id, tenantId, token);
 
             if (result.isPresent()) {
-                cache.put(sensorData.getId(),
-                        sensorData.getTenantId(),
-                        sensorData.getToken());
-
-                return result.isPresent();
+                saveInCache(id, tenantId, token);
+                return Boolean.TRUE;
             } else {
                 return Boolean.FALSE;
             }
         } else {
-            LOGGER.info("Entry found on cache: {},{},{}",
-                    sensorData.getId(),
-                    sensorData.getTenantId(),
-                    sensorData.getToken());
+            LOGGER.info("Entry found on cache: {},{},{}", id, tenantId, token);
             return Boolean.TRUE;
         }
 
+    }
+
+    private Boolean isPresentInCache(String id, String tenantId, String token) {
+        return cache.validateSensorData(id, tenantId, token);
+    }
+
+    private void saveInCache(String id, String tenantId, String token) {
+        cache.put(id, tenantId, token);
     }
 }
